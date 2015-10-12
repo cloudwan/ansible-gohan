@@ -1,0 +1,11 @@
+---
+supported_arch:
+    - darwin-386
+    - darwin-amd64
+    - linux-386
+    - linux-amd64
+    - windows-386
+release: pre-release
+repo: https://github.com/cloudwan
+gohan_download_site: https://github.com/cloudwan/gohan/releases/download/{{release}}
+build_dir: "{{ ansible_env.PWD }}"

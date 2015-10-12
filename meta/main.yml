@@ -1,0 +1,7 @@
+---
+galaxy_info:
+  author: Nachi Ueno <nati.ueno@gmail.com>
+  description: Ansible
+  license: Apache2
+  min_ansible_version: 1.2
+  dependencies: []

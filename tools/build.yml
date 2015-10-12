@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  tasks:
+      - file: path={{ build_dir }}/build state=directory mode=0755
+      - file: path={{ build_dir }}/src state=directory mode=0755
+      - file: path={{ build_dir }}/release state=directory mode=0755
+      - git: repo={{ repo }}/gohan dest="{{ build_dir}}/src/gohan"
+      - git: repo={{ repo }}/chazuke dest="{{ build_dir}}/src/webui"
+      - file: path={{ build_dir }}/build/{{ item }} state=directory mode=0755
+        with_items: "{{ supported_arch }}"
+      - get_url: url="{{ gohan_download_site }}/gohan-{{ item }}.zip" dest="{{ build_dir }}/build/{{ item }}/gohan.zip"
+        with_items: "{{ supported_arch }}"
+      - unarchive: src="{{ build_dir }}/build/{{ item }}/gohan.zip" dest="{{ build_dir }}/build/{{ item }}/"
+        with_items: "{{ supported_arch }}"
+      - file: path="{{ build_dir }}/build/{{ item }}/gohan.zip" state=absent
+        with_items: "{{ supported_arch }}"
+      - synchronize: src="{{ build_dir }}/src/gohan/etc" dest="{{ build_dir }}/build/{{ item }}/"
+        with_items: "{{ supported_arch }}"
+      - synchronize: src="{{ build_dir }}/src/webui" dest="{{ build_dir }}/build/{{ item }}/etc/"
+        with_items: "{{ supported_arch }}"
+      - command: "zip -r {{ build_dir }}/release/gohan_{{ item }}.zip {{ item }}/* "
+        args:
+           chdir: "{{ build_dir }}/build"
+        with_items: "{{ supported_arch }}"
