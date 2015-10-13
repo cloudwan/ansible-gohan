@@ -1,0 +1,26 @@
+box:
+  id: ansible/ubuntu14.04-ansible
+  entrypoint: /bin/bash -c
+build:
+  steps:
+      - script:
+          name: install dependency
+          code: |
+              apt-get update
+              apt-get install -y zip
+      - script:
+          name: build gohan environment zip
+          code: |
+              cd tools
+              pwd
+              ansible-playbook build.yml -i localhost, -c local
+deploy:
+  steps:
+    - script:
+        name: check release zips
+        code: |
+            ls /pipeline/source/tools/release/
+    - tcnksm/ghr:
+        token: $GITHUB_TOKEN
+        input: /pipeline/source/tools/release/
+        replace: true
