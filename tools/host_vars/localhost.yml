@@ -8,5 +8,5 @@ supported_arch:
 release: pre-release
 repo: https://github.com/cloudwan
 gohan_download_site: https://github.com/cloudwan/gohan/releases/download/{{release}}
-chazuke_download_path: https://github.com/cloudwan/chazuke/releases/download/{{release}}/chazuke.zip
+gohan_webui_download_path: https://github.com/cloudwan/gohan_webui/releases/download/{{release}}/gohan_webui.zip
 build_dir: "{{ ansible_env.PWD }}"

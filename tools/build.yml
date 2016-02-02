@@ -7,8 +7,8 @@
       - file: path={{ build_dir }}/src/webui state=directory mode=0755
       - file: path={{ build_dir }}/release state=directory mode=0755
       - git: repo={{ repo }}/gohan dest="{{ build_dir}}/src/gohan"
-      - get_url: url={{ chazuke_download_path }} dest="{{ build_dir }}/src/"
-      - unarchive: src="{{ build_dir }}/src/chazuke.zip" dest="{{ build_dir }}/src/webui/"
+      - get_url: url={{ gohan_webui_download_path }} dest="{{ build_dir }}/src/"
+      - unarchive: src="{{ build_dir }}/src/gohan_webui.zip" dest="{{ build_dir }}/src/webui/"
       - copy: src="{{ build_dir }}/src/webui/config.json.sample" dest="{{ build_dir }}/src/webui/config.json"
       - file: path={{ build_dir }}/build/{{ item }} state=directory mode=0755
         with_items: "{{ supported_arch }}"
