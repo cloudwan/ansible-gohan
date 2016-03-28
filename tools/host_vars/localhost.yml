@@ -1,10 +1,10 @@
 ---
 supported_arch:
-    - darwin-386
-    - darwin-amd64
+    - darwin-10.6-386
+    - darwin-10.6-amd64
     - linux-386
     - linux-amd64
-    - windows-386
+    - windows-4.0-386
 release: pre-release
 repo: https://github.com/cloudwan
 gohan_download_site: https://github.com/cloudwan/gohan/releases/download/{{release}}
